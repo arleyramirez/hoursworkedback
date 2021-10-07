@@ -71,17 +71,19 @@ public class ReportServiceService {
 					} else {
 						totalHours = totalHours + report.get(i).getSundayHours();
 					}
+					
+					dayHours = dayHours + report.get(i).getDayHours();
+					nightHours = nightHours + report.get(i).getNightHours();
+					sundayHours = sundayHours + report.get(i).getSundayHours();
+					
 				} else {
 					extraDayHours = extraDayHours + report.get(i).getDayHours();
 					extraNightHours = extraNightHours + report.get(i).getNightHours();
 					extraSundayHours = extraSundayHours + report.get(i).getSundayHours();
 				}
-				dayHours = dayHours + report.get(i).getDayHours();
-				nightHours = nightHours + report.get(i).getNightHours();
-				sundayHours = sundayHours + report.get(i).getSundayHours();
-				
+
 			}
-			totalHours = dayHours + nightHours + sundayHours;
+			totalHours = dayHours + nightHours + sundayHours + extraDayHours + extraNightHours + extraSundayHours;
 			
 			reportResponse.setTotalHours(Math.round(totalHours*100.0)/100.0);
 			reportResponse.setDayHours(Math.round(dayHours*100.0)/100.0);
